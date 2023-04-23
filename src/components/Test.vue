@@ -2,8 +2,26 @@
 
   <div>
     <div style="text-align: center">
-      <el-button type="text" @click="tiredVisible = true">开始测试</el-button>
+      <el-tooltip class="item" effect="light" placement="right">
+        <div slot="content">进行数学测试，<br/>更新“实时监测”与“数据采集”页面所展示的数据</div>
+        <el-button type="text" icon="el-icon-edit" @click="selectVisible = true">开始测试</el-button>
+      </el-tooltip>
     </div>
+
+      <el-dialog
+        title="请选择数学测试时间(分钟)"
+        :visible.sync="selectVisible"
+        width="30%"
+        :before-close="handleClose">
+
+        <el-input v-model="selectTime" placeholder="请输入测试时间/min"></el-input>
+        <div style="display: flex;justify-content: center">
+
+        <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="start">下 一 步</el-button>
+        </span>
+        </div>
+      </el-dialog>
 
     <el-dialog
       title="疲劳度调查"
@@ -169,7 +187,9 @@ export default {
         reactionTimeDiv: 0,
       }],
 
-      mathLine: Date.now() + 1000 * 60 * 2,
+      selectVisible: false,
+      selectTime: 0,
+      mathLine: Date.now() + this.selectTime * 1000 * 60,
       leisureLine: Date.now() + 1000 * 30,
       tiredDegree: 0,
       tiredRes: [],
@@ -196,6 +216,10 @@ export default {
     };
   },
   methods: {
+    start() {
+      this.selectVisible = false
+      this.tiredVisible = true
+    },
     sendData() {
       this.$store.commit('setData', {fatigue: this.tiredRes, vvalue: this.V, table: this.tableData})
       this.resVisible = false
@@ -300,15 +324,17 @@ export default {
     dialogChange() {
       this.tiredRes.push(parseInt(this.tiredDegree) * 0.01)
       this.tiredVisible = false
-      this.mathLine = Date.now() + 1000 * 60 * 2
+      this.mathLine = Date.now() + (this.selectTime * 1000 * 60)
       this.mathVisible = true
       this.getTime()
     },
     watchMathTimes() {
       if (this.mathTimes == 3) {
         this.leisureLine = Date.now() + 1000 * 30
+        this.mathVisible = false
         this.leisureVisible = true
       } else if (this.mathTimes == 4) {
+        this.mathVisible = false
         this.resVisible = true
       } else {
         this.mathVisible = false
@@ -320,5 +346,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

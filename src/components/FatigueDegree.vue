@@ -23,7 +23,7 @@ export default {
       this.bar.setOption({
         series: [
           {
-            data: this.$store.getters.getFatigue
+            data: this.$store.getters.getFatigue,
           }
         ]
       })
@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      bar: ''
+      bar: '',
     };
   },
   mounted: function () {
@@ -69,10 +69,27 @@ export default {
                   position: 'top', //在上方显示
                   textStyle: { //数值样式
                     color: 'black',
-                    fontSize: 16
+                    fontSize: 16,
+                    fontFamily: 'sans-serif',
                   }
-                }
-              }
+                },
+                color: function (params) {
+                  var data = params.value
+                  if (data <= 0.4) {
+                    return '#5470c6'
+                  } else if (data > 0.4 && data <= 0.7) {
+                    return '#FFFF00'
+                  } else {
+                    return '#FF0000'
+                  }
+                },
+                barBorderRadius: 5,
+                borderWidth: 1,
+                borderType: 'solid',
+                // borderColor: '#73c0de',
+                // shadowColor: '#5470c6',
+                shadowBlur: 3
+              },
             }
           }
         ]

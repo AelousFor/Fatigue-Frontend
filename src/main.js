@@ -7,8 +7,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from "./store/store";
 
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -22,7 +24,7 @@ new Vue({
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     next();
-  }else {
+  } else {
     next(false)
   }
 })

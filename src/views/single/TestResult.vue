@@ -3,7 +3,7 @@
   <el-row :gutter="4">
 
     <el-col :span="10">
-      <el-image :src=imgUrl></el-image>
+      <el-image :src=imgUrl style="display: flex;justify-content: center;width: 500px"></el-image>
     </el-col>
 
     <el-col :span="10">
@@ -24,7 +24,7 @@
 
 <script>
 
-import Img from "../../assets/img2.png"
+import Img from "../../assets/img1.jpg"
 import DataTable from "../../components/DataTable";
 import VValue from "../../components/V-Value";
 

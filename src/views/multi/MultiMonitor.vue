@@ -3,24 +3,14 @@
   <el-row :gutter="4">
 
     <el-col :span="10">
-      <el-image :src=imgUrl></el-image>
+      <el-card shadow="always" style="width: 650px;height: 440px">
+        <FatigueVideo></FatigueVideo>
+      </el-card>
     </el-col>
 
     <el-col :span="10">
-      <el-card shadow="always" style="width: 650px;height: 450px;margin-left: 150px">
-
-        <el-col :span="5">
-          <div class="vertical-text">
-            疲劳程度实时波形
-          </div>
-        </el-col>
-
-        <el-col :span="19">
-          <div style="width: 100%">
-            <el-image :src=waveUrl></el-image>
-          </div>
-        </el-col>
-
+      <el-card shadow="always" style="width: 650px;height: 440px;margin-left: 150px">
+        <WaveVideo></WaveVideo>
       </el-card>
     </el-col>
 
@@ -37,32 +27,21 @@
 </template>
 
 <script>
-import Img from "../../assets/img3.png"
-import WaveImg from "../../assets/wave1.jpg"
 import DataTable from "../../components/DataTable";
 import FatigueDegree from "../../components/FatigueDegree";
-
+import WaveVideo from "../../components/WaveVideo";
+import FatigueVideo from "../../components/FatigueVideo";
 export default {
   name: "MultiMonitor",
-  components: {FatigueDegree, DataTable},
+  components: {FatigueDegree, DataTable, WaveVideo,FatigueVideo},
   data() {
-    return {
-      imgUrl: Img,
-      waveUrl: WaveImg
-    }
+    return {}
   }
 }
 </script>
 
 <style scoped>
-.vertical-text {
-  writing-mode: vertical-lr; /* 竖排方向从上到下 */
-  font-weight: bold;
-  font-size: 24px;
-  font-family: 'Microsoft YaHei', Arial, sans-serif;
-  letter-spacing: 0.5em;
-}
-.fatigue{
+.fatigue {
   display: flex;
   justify-content: center;
   align-items: center;

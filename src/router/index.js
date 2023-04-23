@@ -12,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/single'
+      redirect: '/single',
     },
     {
       path: '/single',
@@ -22,7 +22,7 @@ export default new Router({
         {
           path: 'monitor',
           name: 'FatigueMonitor',
-          component: FatigueMonitor, // 懒加载组件
+          component: FatigueMonitor,
         },
         {
           path: 'result',
