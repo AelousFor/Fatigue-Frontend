@@ -3,15 +3,14 @@
   <div id="app">
 
     <el-container>
-      <el-header class="header">
+      <el-header style=" padding: 0 !important;">
         <el-menu
           :default-active="activeIndex"
-          class="background"
+          class="header"
           mode="horizontal"
-          background-color="#545c64"
           text-color="#fff"
-          active-text-color="#ffd04b"
-          style="border-bottom: 2px solid #fff;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+          active-text-color="#18BAAF"
+          style="border-bottom: 2px solid  #18BAAF;box-shadow: 0 0 10px #18BAAF">
           <el-menu-item index="0">
 
             <div class="logo">
@@ -38,19 +37,18 @@
       </el-header>
 
       <el-container>
-        <el-aside width="220px" style="background-image: url('assets/ui/②.png')">
+        <el-aside width="220px">
           <div>
             <el-menu
               default-active="2"
-              class="el-menu-vertical-demo"
-              background-color="#545c64"
+              class="aside"
               text-color="#fff"
-              style=" height: 100vh;"
-              active-text-color="#ffd04b">
+              style=" height: 925px;border-right: solid 2px #18BAAF"
+              active-text-color="#18BAAF">
 
               <el-menu-item index="1" @click="toSingle">
                 <i class="el-icon-location"></i>
-                <span slot="title">单通道</span>
+                <span slot="title" >单通道</span>
               </el-menu-item>
 
               <el-menu-item index="2" @click="toMulti">
@@ -71,10 +69,10 @@
         </el-aside>
 
 
-        <el-main>
-          <el-card style="width: 1430px;height: 900px">
+        <el-main style="background-color: black">
+          <div class="main">
             <router-view></router-view>
-          </el-card>
+          </div>
         </el-main>
 
       </el-container>
@@ -136,11 +134,24 @@ export default {
 
 <style>
 
-.header{
-  padding: 0 !important;
-  /*background-image: url('assets/ui/①.png')*/
+.header {
+  background-image: url('assets/ui/①.png');
+  background-size: 100%;
 }
 
+.aside {
+  background-image: url('assets/ui/②.png');
+  background-size: 109%;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  background-image: url('../src/assets/ui/③.png');
+  background-size: 100%;
+  border: #18BAAF 3px solid;
+  height: 880px;
+}
 
 .title {
   display: flex;
@@ -153,7 +164,4 @@ export default {
   font-size: large;
 }
 
-.background {
-  /*background-image: url("assets/img2.jpg");*/
-}
 </style>

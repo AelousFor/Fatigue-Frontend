@@ -6,8 +6,10 @@ Vue.use(Vuex)
 const store= new Vuex.Store({
   //state存放状态,
   state: {
-    fatigue: [0.12, 0.2, 0.15, 0.8, 0.7],
-    vvalue: [0.5, 0.48, 0.52, 0.45, 0.53],
+    fatigue: [Math.random().toFixed(2), Math.random().toFixed(2),
+      Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2)],
+    vvalue: [Math.random().toFixed(2), Math.random().toFixed(2),
+      Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2)],
     table:  [{
       th: 1,
       reactionTime: 0,

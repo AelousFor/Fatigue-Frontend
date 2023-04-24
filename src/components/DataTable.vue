@@ -1,43 +1,44 @@
 <template>
 
   <div>
-  <el-table
-    :data="tableData"
-    border
-    class="table-body"
-    style="width: 100%">
-    <el-table-column class="table-header"
-      prop="th"
-      label="测试次序"
-      width="180">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="reactionTime"
-      label="反应总时间(ms)"
-      width="180">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="totalCount"
-      label="总答题数"
-      width="180">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="rightCount"
-      label="正确答题数">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="wrongCount"
-      label="错误答题数">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="rightRatio"
-      label="正确率">
-    </el-table-column>
-    <el-table-column class="table-header"
-      prop="reactionTimeDiv"
-      label="反应时间标准差(ms)">
-    </el-table-column>
-  </el-table>
+    <el-table
+      :data="tableData"
+      :cell-style="{borderColor:'#139189'}"
+      :header-cell-style="{borderColor:'#18BAAF',color:'#25C4B9'}"
+
+      class="table-body">
+      <el-table-column class="table-header"
+                       prop="th"
+                       label="测试次序"
+                       width="180">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="reactionTime"
+                       label="反应总时间(ms)"
+                       width="180">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="totalCount"
+                       label="总答题数"
+                       width="180">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="rightCount"
+                       label="正确答题数">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="wrongCount"
+                       label="错误答题数">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="rightRatio"
+                       label="正确率">
+      </el-table-column>
+      <el-table-column class="table-header"
+                       prop="reactionTimeDiv"
+                       label="反应时间标准差(ms)">
+      </el-table-column>
+    </el-table>
 
 
   </div>
@@ -49,7 +50,7 @@ import {mapGetters, mapState} from "vuex";
 
 export default {
   name: "DataTable",
-  components:{
+  components: {
     Test
   },
   computed: {
@@ -57,12 +58,11 @@ export default {
     ...mapGetters(['getTable'])
   },
   watch: {
-    table: function() {
-      this.tableData=this.$store.getters.getTable
+    table: function () {
+      this.tableData = this.$store.getters.getTable
     }
   },
-  methods:{
-  },
+  methods: {},
   data() {
     return {
       tableData: [{
@@ -112,21 +112,30 @@ export default {
 </script>
 
 <style scoped>
+
 .table-header {
   font-weight: bold;
-  background-color: #f5f5f5;
 }
-.table-header .cell {
-  padding: 15px;
-}
+
 .table-body {
   font-size: 14px;
+  color: #18BAAF;
+  width: 1300px;
 }
-.table-body .cell {
-  padding: 10px 15px;
-  border-bottom: 1px solid #f0f0f0;
+
+
+/*最外层透明*/
+/deep/ .el-table, /deep/ .el-table__expanded-cell {
+  background-color: transparent;
 }
-.table-body .row:last-child .cell {
-  border-bottom: none;
+
+/* 表格内背景颜色 */
+/deep/ .el-table th,
+/deep/ .el-table tr,
+/deep/ .el-table td {
+  background-color: transparent;
+}
+/deep/ .el-table--border::after, .el-table--group::after, .el-table::before {
+  background-color: #18BAAF;
 }
 </style>

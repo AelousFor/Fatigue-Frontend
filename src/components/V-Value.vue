@@ -1,8 +1,9 @@
 <template>
-  <div>
-  <div id="chart" style="width:800px;height:478px;float:left;"></div>
 
+  <div>
+  <div id="chart" style="width:700px;height:440px;float:left;"></div>
   </div>
+
 </template>
 
 <script>
@@ -48,7 +49,10 @@ export default {
         title: {
           text: 'V值折线图', // 主标题
           subtext: '', // 副标题
-          x: 'left' // x轴方向对齐方式
+          x: 'left', // x轴方向对齐方式
+          textStyle:{
+            color:'#18BAAF'
+          }
         },
         tooltip: {
           trigger: 'axis' // axis   item   none三个值
@@ -56,33 +60,46 @@ export default {
         xAxis: {
           type: 'category', // 还有其他的type，可以去官网喵两眼哦
           data: ['第一次', '第两次', '第三次', '第四次', '第五次'], // x轴数据
-          name: '' // x轴名称
-          // x轴名称样式
-          // nameTextStyle: {
-          //   fontWeight: 600,
-          //   fontSize: 18
-          // }
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: '#18BAAF',
+              width: '2'
+            }
+          },
         },
         yAxis: {
           type: 'value',
-          name: '', // y轴名称
-          // y轴名称样式
-          // nameTextStyle: {
-          //   fontWeight: 600,
-          //   fontSize: 18
-          // }
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: '#18BAAF',
+              width: '2'
+            }
+          },
+          splitLine:{
+            lineStyle:{
+              color:'#139189'
+            }
+          },
         },
         legend: {
           orient: 'vertical',
           x: 'center',
           y: 'top',
-          data: ['V值']
+          data: ['V值'],
+          lineStyle:{
+            color: '#E6D177'
+          }
         },
         series: [
           {
             name: 'V值',
             data: this.$store.getters.getVValue,
-            type: 'line'
+            type: 'line',
+            lineStyle:{
+              color: '#E6D177'
+            }
           }
         ]
       })

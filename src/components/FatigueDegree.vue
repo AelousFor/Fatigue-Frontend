@@ -43,15 +43,35 @@ export default {
       this.bar.setOption({
         xAxis: {
           type: 'category',
-          data: ['第一次', '第二次', '第三次', '第四次', '第五次']
+          data: ['第一次', '第二次', '第三次', '第四次', '第五次'],
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: '#18BAAF',
+              width: '2'
+            }
+          },
         },
         yAxis: {
           type: 'value',
           splitNumber: 5,
           max: 1,
+          axisLine: {
+            lineStyle: {
+              type: 'solid',
+              color: '#18BAAF',
+              width: '2'
+            }
+          },
           name: '疲劳程度',
           nameTextStyle: {
             fontWeight: 'bold',
+            color: '#18BAAF'
+          },
+          splitLine:{
+            lineStyle:{
+              color:'#139189'
+            }
           },
         },
         series: [
@@ -76,11 +96,11 @@ export default {
                 color: function (params) {
                   var data = params.value
                   if (data <= 0.4) {
-                    return '#5470c6'
+                    return '#277C87'
                   } else if (data > 0.4 && data <= 0.7) {
-                    return '#FFFF00'
+                    return '#E6D177'
                   } else {
-                    return '#FF0000'
+                    return '#B6BC7B'
                   }
                 },
                 barBorderRadius: 5,

@@ -8,20 +8,24 @@
       </el-tooltip>
     </div>
 
-      <el-dialog
-        title="请选择数学测试时间(分钟)"
-        :visible.sync="selectVisible"
-        width="30%"
-        :before-close="handleClose">
 
-        <el-input v-model="selectTime" placeholder="请输入测试时间/min"></el-input>
-        <div style="display: flex;justify-content: center">
+    <el-dialog
+      title="请选择数学测试时间(分钟)"
+      :visible.sync="selectVisible"
+      width="30%"
+      class="select"
+      :before-close="handleClose">
+
+      <el-input v-model="selectTime" placeholder="请输入测试时间/min"></el-input>
+      <div style="display: flex;justify-content: center">
 
         <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="start">下 一 步</el-button>
         </span>
-        </div>
-      </el-dialog>
+
+      </div>
+    </el-dialog>
+
 
     <el-dialog
       title="疲劳度调查"
@@ -346,4 +350,9 @@ export default {
 </script>
 
 <style scoped>
+
+.select {
+background-color: red;
+}
+
 </style>

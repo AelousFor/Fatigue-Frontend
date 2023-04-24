@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="vertical-text">
-      <span>疲劳程度实时波形</span>
+      <span style="color: #18BAAF">疲劳程度实时波形</span>
     </div>
     <br>
+    <div style="display: flex;justify-content: center">
     <video
       ref="myVideo"
       :poster="poster"
@@ -12,8 +13,9 @@
       oncontextmenu="return false"
       class="video-box"
       muted autoplay="autoplay" loop="loop"
-      style="width: 100%"
+      style="width: 96%"
     ></video>
+    </div>
   </div>
 </template>
 
@@ -68,7 +70,7 @@ export default {
 
 <style scoped>
 .vertical-text {
-  /*writing-mode: vertical-lr; !* 竖排方向从上到下 *!*/
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   font-weight: bold;

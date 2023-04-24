@@ -1,28 +1,28 @@
 <template>
 
-  <el-row>
+  <div>
 
-    <el-col :span="10">
-      <div shadow="always" class="left">
-        <FatigueVideo></FatigueVideo>
-      </div>
-    </el-col>
+    <div style="display: flex;justify-content: center;margin-top: 10px">
+      <el-row>
+        <el-col :span="12">
+          <div class="left">
+            <FatigueVideo></FatigueVideo>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="right">
+            <WaveVideo></WaveVideo>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
 
-    <el-col :span="10">
-      <el-card shadow="always" class="right">
-        <WaveVideo></WaveVideo>
-      </el-card>
-    </el-col>
+    <div class="under">
+        <FatigueDegree></FatigueDegree>
+    </div>
 
-    <el-col :span="24" style="display: flex;justify-content: center">
-      <el-card shadow="always" style="width: 1400px;height: 330px;margin-top: 25px">
-        <div class="fatigue">
-          <FatigueDegree></FatigueDegree>
-        </div>
-      </el-card>
-    </el-col>
 
-  </el-row>
+  </div>
 
 </template>
 
@@ -44,20 +44,33 @@ export default {
 <style scoped>
 
 .left {
-  background-image: url('../src/assets/ui/monitor/④左.png');
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/ui/monitor/ml.png');
+  background-size: 100%;
   width: 650px;
-  height: 440px;
+  height: 442px;
 }
 
 .right {
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/ui/monitor/mr.png');
+  background-size: 100%;
   width: 650px;
-  height: 440px;
-  margin-left: 150px
+  height: 437px;
+  margin-left: 40px;
 }
 
-.fatigue {
+.under {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+  width: 1400px;
+  height: 394px;
+  background-image: url('../../assets/ui/monitor/mu.png');
+  background-size: 100%;
 }
+
 </style>

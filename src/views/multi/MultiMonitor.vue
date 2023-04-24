@@ -1,39 +1,38 @@
 <template>
 
-  <el-row :gutter="4">
+  <div>
 
-    <el-col :span="10">
-      <el-card shadow="always" style="width: 650px;height: 440px">
-        <FatigueVideo></FatigueVideo>
-      </el-card>
-    </el-col>
+    <div style="display: flex;justify-content: center;margin-top: 10px">
+      <el-row>
+        <el-col :span="12">
+          <div class="left">
+            <FatigueVideo></FatigueVideo>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="right">
+            <MultiWaveVideo></MultiWaveVideo>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
 
-    <el-col :span="10">
-      <el-card shadow="always" style="width: 650px;height: 440px;margin-left: 150px">
-        <WaveVideo></WaveVideo>
-      </el-card>
-    </el-col>
+    <div class="under">
+      <FatigueDegree></FatigueDegree>
+    </div>
 
-    <el-col :span="24" style="display: flex;justify-content: center">
-      <el-card shadow="always" style="width: 1400px;height: 330px;margin-top: 25px">
-        <div class="fatigue">
-          <FatigueDegree></FatigueDegree>
-        </div>
-      </el-card>
-    </el-col>
-
-  </el-row>
-
+  </div>
 </template>
 
 <script>
 import DataTable from "../../components/DataTable";
 import FatigueDegree from "../../components/FatigueDegree";
-import WaveVideo from "../../components/WaveVideo";
 import FatigueVideo from "../../components/FatigueVideo";
+import MultiWaveVideo from "../../components/MultiWaveVideo";
+
 export default {
   name: "MultiMonitor",
-  components: {FatigueDegree, DataTable, WaveVideo,FatigueVideo},
+  components: {MultiWaveVideo, FatigueDegree, DataTable, FatigueVideo},
   data() {
     return {}
   }
@@ -41,9 +40,33 @@ export default {
 </script>
 
 <style scoped>
-.fatigue {
+.left {
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/ui/monitor/ml.png');
+  background-size: 100%;
+  width: 650px;
+  height: 442px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  background-image: url('../../assets/ui/monitor/mr.png');
+  background-size: 100%;
+  width: 650px;
+  height: 437px;
+  margin-left: 40px;
+}
+
+.under {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+  width: 1400px;
+  height: 394px;
+  background-image: url('../../assets/ui/monitor/mu.png');
+  background-size: 100%;
 }
 </style>
