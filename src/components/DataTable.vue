@@ -138,4 +138,8 @@ export default {
 /deep/ .el-table--border::after, .el-table--group::after, .el-table::before {
   background-color: #18BAAF;
 }
+/deep/ .el-table th.el-table__cell {
+  background-color: transparent;
+}
+
 </style>

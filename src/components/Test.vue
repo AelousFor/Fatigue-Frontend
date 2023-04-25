@@ -13,14 +13,13 @@
       title="请选择数学测试时间(分钟)"
       :visible.sync="selectVisible"
       width="30%"
-      class="select"
       :before-close="handleClose">
 
       <el-input v-model="selectTime" placeholder="请输入测试时间/min"></el-input>
       <div style="display: flex;justify-content: center">
 
         <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="start">下 一 步</el-button>
+        <el-button type="primary" @click="start" class="buttons">下 一 步</el-button>
         </span>
 
       </div>
@@ -34,12 +33,12 @@
       :before-close="handleClose">
 
       <div class="block">
-        <span class="demonstration">请滑动下方进度条确认你的疲劳程度</span>
+        <span class="text">请滑动下方进度条确认你的疲劳程度</span>
         <el-slider v-model="tiredDegree" :format-tooltip="formatTooltip"></el-slider>
       </div>
 
       <span slot="footer" class="dialog-footer">
-       <el-button type="primary" @click="dialogChange">
+       <el-button type="primary" @click="dialogChange" class="buttons">
          下 一 步
        </el-button>
       </span>
@@ -54,10 +53,10 @@
 
       <div style="text-align: center;font-size: 30px">
         <el-statistic @finish="mathTime" :value="mathLine" time-indices
-                      title="倒计时结束后进入下一轮测试"></el-statistic>
+                      title="倒计时结束后进入下一轮测试" class="text"></el-statistic>
         <br>
-        <span>{{ num1 }} {{ roll }}</span>
-        <span>{{ num2 }} =</span>
+        <span class="text">{{ num1 }} {{ roll }}</span>
+        <span class="text">{{ num2 }} =</span>
       </div>
 
       <br>
@@ -65,7 +64,7 @@
 
       <el-input v-model="input" placeholder="请输入结果" @keyup.enter.native="getNewNumbers(input)"></el-input>
       <span slot="footer" class="dialog-footer">
-           <el-button type="primary" @click="getNewNumbers(input)">下一题</el-button>
+           <el-button type="primary" @click="getNewNumbers(input)" class="buttons">下一题</el-button>
       </span>
 
 
@@ -90,7 +89,7 @@
       width="80%"
       :before-close="handleClose">
 
-      <span>V:  ①{{ V[0] }}  ②{{ V[1] }}  ③{{ V[2] }}  ④{{ V[3] }}  ⑤{{ V[4] }}</span>
+      <span class="text">V:  ①{{ V[0] }}  ②{{ V[1] }}  ③{{ V[2] }}  ④{{ V[3] }}  ⑤{{ V[4] }}</span>
 
       <el-table
         :data="tableData"
@@ -130,7 +129,7 @@
 
 
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="sendData">结 束</el-button>
+        <el-button type="primary" @click="sendData" class="buttons">结 束</el-button>
       </span>
     </el-dialog>
 
@@ -351,8 +350,19 @@ export default {
 
 <style scoped>
 
-.select {
-background-color: red;
+
+.buttons {
+  background-color: #18BAAF
+}
+
+/deep/ .el-slider__bar{
+  background-color: #18BAAF;
+}
+
+/deep/ .el-slider__button {
+
+  border: 2px solid #18BAAF;
+
 }
 
 </style>

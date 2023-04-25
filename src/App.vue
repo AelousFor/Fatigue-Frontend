@@ -48,7 +48,7 @@
 
               <el-menu-item index="1" @click="toSingle">
                 <i class="el-icon-location"></i>
-                <span slot="title" >单通道</span>
+                <span slot="title">单通道</span>
               </el-menu-item>
 
               <el-menu-item index="2" @click="toMulti">
@@ -107,10 +107,20 @@ export default {
       });
     },
     toSingle() {
-      this.$router.push('/single');
+      const hash = location.hash;
+      const match = hash.match(/^#\/(\w+)\/(\w+)/);
+      if (match) {
+        const chatPath = match[2]
+        this.$router.push('/single' + '/' + chatPath);
+      }
     },
     toMulti() {
-      this.$router.push('/multi');
+      const hash = location.hash;
+      const match = hash.match(/^#\/(\w+)\/(\w+)/);
+      if (match) {
+        const chatPath = match[2]
+        this.$router.push('/multi' + '/' + chatPath);
+      }
     },
     toMonitor() {
       const hash = location.hash;
@@ -135,19 +145,19 @@ export default {
 <style>
 
 .header {
-  background-image: url('assets/ui/①.png');
+  background-image: url('assets/ui/header.png');
   background-size: 100%;
 }
 
 .aside {
-  background-image: url('assets/ui/②.png');
+  background-image: url('assets/ui/aside.png');
   background-size: 109%;
 }
 
 .main {
   display: flex;
   justify-content: space-around;
-  background-image: url('../src/assets/ui/③.png');
+  background-image: url('../src/assets/ui/back.png');
   background-size: 100%;
   border: #18BAAF 3px solid;
   height: 880px;
