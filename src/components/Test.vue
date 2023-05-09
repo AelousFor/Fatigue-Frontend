@@ -219,6 +219,7 @@ export default {
     };
   },
   methods: {
+
     start() {
       this.selectVisible = false
       this.tiredVisible = true
@@ -360,9 +361,8 @@ export default {
 }
 
 /deep/ .el-slider__button {
-
   border: 2px solid #18BAAF;
-
 }
+
 
 </style>

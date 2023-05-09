@@ -40,7 +40,7 @@
         <el-aside width="220px">
           <div>
             <el-menu
-              default-active="2"
+              default-active="1"
               class="aside"
               text-color="#fff"
               style=" height: 925px;border-right: solid 2px #18BAAF"
@@ -56,12 +56,11 @@
                 <span slot="title">多通道</span>
               </el-menu-item>
 
-              <div @click="imitate">
-                <el-menu-item index="3">
-                  <i class="el-icon-setting"></i>
-                  <span slot="title">环境模拟</span>
-                </el-menu-item>
-              </div>
+              <el-menu-item index="3" @click="toDatabase">
+                <i class="el-icon-s-data"></i>
+                <span slot="title">历史数据</span>
+              </el-menu-item>
+
 
             </el-menu>
           </div>
@@ -97,14 +96,8 @@ export default {
     };
   },
   methods: {
-    imitate() {
-      const h = this.$createElement;
-      this.$message({
-        message: h('p', null, [
-          h('span', null, '未检测到设备，请检查设备连接情况'),
-        ]),
-        type: "error"
-      });
+    toDatabase() {
+      this.$router.push('/database');
     },
     toSingle() {
       const hash = location.hash;
@@ -112,6 +105,8 @@ export default {
       if (match) {
         const chatPath = match[2]
         this.$router.push('/single' + '/' + chatPath);
+      }else {
+        this.$router.push('/single');
       }
     },
     toMulti() {
@@ -120,6 +115,8 @@ export default {
       if (match) {
         const chatPath = match[2]
         this.$router.push('/multi' + '/' + chatPath);
+      }else {
+        this.$router.push('/multi');
       }
     },
     toMonitor() {
@@ -127,7 +124,9 @@ export default {
       const match = hash.match(/^#\/(\w+)/);
       if (match) {
         const chatPath = match[1]
-        this.$router.push('/' + chatPath + '/monitor');
+        if (chatPath !== 'database') {
+          this.$router.push('/' + chatPath + '/monitor');
+        }
       }
     },
     toResult() {
@@ -135,7 +134,9 @@ export default {
       const match = hash.match(/^#\/(\w+)/);
       if (match) {
         const chatPath = match[1]
-        this.$router.push('/' + chatPath + '/result');
+        if (chatPath !== 'database') {
+          this.$router.push('/' + chatPath + '/result');
+        }
       }
     },
   }

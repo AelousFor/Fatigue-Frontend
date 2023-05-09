@@ -106,8 +106,6 @@ export default {
                 barBorderRadius: 5,
                 borderWidth: 1,
                 borderType: 'solid',
-                // borderColor: '#73c0de',
-                // shadowColor: '#5470c6',
                 shadowBlur: 3
               },
             }

@@ -5,6 +5,7 @@ import FatigueMonitor from "../views/single/FatigueMonitor";
 import MultiMonitor from "../views/multi/MultiMonitor";
 import MultiResult from "../views/multi/MultiResult";
 import GeneralPage from "../views/GeneralPage";
+import Database from "../views/Database";
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
           component: MultiResult,
         },
       ]
+    },
+    {
+      path: '/database',
+      name: 'Database',
+      component: Database
     },
   ]
 })
