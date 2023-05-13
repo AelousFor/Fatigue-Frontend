@@ -27,9 +27,8 @@
             </div>
 
           </el-menu-item>
-          <el-menu-item index="1" @click="toMonitor">实时监测</el-menu-item>
-          <el-menu-item index="2" @click="toResult">数据采集</el-menu-item>
-
+          <el-menu-item index="1" @click="toMonitor" v-if="mVisible">实时监测</el-menu-item>
+          <el-menu-item index="2" @click="toResult" v-if="rVisible">数据采集</el-menu-item>
           <el-menu-item index="3">
             <Test></Test>
           </el-menu-item>
@@ -93,29 +92,37 @@ export default {
     return {
       LogoUrl: Logo,
       activeIndex: '1',
+      mVisible: true,
+      rVisible: true,
     };
   },
   methods: {
     toDatabase() {
+      this.mVisible = false
+      this.rVisible = false
       this.$router.push('/database');
     },
     toSingle() {
+      this.mVisible = true
+      this.rVisible = true
       const hash = location.hash;
       const match = hash.match(/^#\/(\w+)\/(\w+)/);
       if (match) {
         const chatPath = match[2]
         this.$router.push('/single' + '/' + chatPath);
-      }else {
+      } else {
         this.$router.push('/single');
       }
     },
     toMulti() {
+      this.mVisible = true
+      this.rVisible = true
       const hash = location.hash;
       const match = hash.match(/^#\/(\w+)\/(\w+)/);
       if (match) {
         const chatPath = match[2]
         this.$router.push('/multi' + '/' + chatPath);
-      }else {
+      } else {
         this.$router.push('/multi');
       }
     },

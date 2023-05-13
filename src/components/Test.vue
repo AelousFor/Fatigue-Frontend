@@ -4,7 +4,8 @@
     <div style="text-align: center">
       <el-tooltip class="item" effect="light" placement="right">
         <div slot="content">进行数学测试，<br/>更新“实时监测”与“数据采集”页面所展示的数据</div>
-        <el-button type="text" icon="el-icon-edit" @click="selectVisible = true">开始测试</el-button>
+        <el-button type="text" icon="el-icon-edit" @click="selectVisible = true" style="color: white">开始测试
+        </el-button>
       </el-tooltip>
     </div>
 
@@ -129,8 +130,48 @@
 
 
       <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="insertVisible=true" class="buttons">存 入 数 据</el-button>
         <el-button type="primary" @click="sendData" class="buttons">结 束</el-button>
       </span>
+    </el-dialog>
+
+    <el-dialog
+      title="信息录入"
+      :visible.sync="insertVisible"
+      width="30%"
+      :before-close="handleClose">
+
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="姓名">
+          <el-input v-model="form.userName"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-select v-model="form.region" placeholder="请选择性别">
+            <el-option label="男" value="男"></el-option>
+            <el-option label="女" value="女"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="年龄">
+          <el-input v-model="form.userAge"></el-input>
+        </el-form-item>
+        <el-form-item label="职业">
+          <el-input v-model="form.userOccupation"></el-input>
+        </el-form-item>
+        <el-form-item label="学历">
+          <el-select v-model="form.userEducation" placeholder="请选择学历">
+            <el-option label="小学" value="小学"></el-option>
+            <el-option label="初中" value="初中"></el-option>
+            <el-option label="高中" value="高中"></el-option>
+            <el-option label="本科" value="本科"></el-option>
+            <el-option label="研究生" value="研究生"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="insertData" class="buttons">录入</el-button>
+          <el-button type="primary" @click="insertVisible=false" class="buttons">取消</el-button>
+        </el-form-item>
+      </el-form>
+
     </el-dialog>
 
   </div>
@@ -201,6 +242,7 @@ export default {
 
       input: '',
       roll: '+',
+      insertVisible: false,
       tiredVisible: false,
       mathVisible: false,
       resVisible: false,
@@ -216,10 +258,54 @@ export default {
       ratio: [0, 0, 0, 0, 0],
       num1: Math.floor((Math.random() * 100) + 1),
       num2: Math.floor((Math.random() * 100) + 1),
+
+      form: {
+        userName: "",
+        userGender: "",
+        userAge: 0,
+        userOccupation: "",
+        userEducation: "",
+      }
     };
   },
   methods: {
-
+    insertData() {
+      //get或者post , api为接口地址
+      this.$axios({
+        method: 'post',
+        url: 'http://127.0.0.1:9876/user/insert',
+        data: {
+          userName: this.form.userName,
+          userGender: this.form.userGender,
+          userAge: this.form.userAge,
+          userOccupation: this.form.userOccupation,
+          userEducation: this.form.userEducation,
+          mathTime: this.selectTime,
+          fatigueDegree: this.tiredRes.toString(),
+          vValue: this.V.toString(),
+          rightNumber: this.right.toString(),
+          wrongNumber: this.wrong.toString(),
+          divValue: this.div.toString()
+        },
+      })
+        .then((res) => {
+          if (res.data.code === "200") {
+            this.$message({
+              message: '录入成功',
+              type: 'success'
+            });
+            this.insertVisible = false
+          } else {
+            this.$message.error('录入失败，请检查信息后重试');
+          }
+        })
+        .catch((err) => {
+          //请求失败就会捕获报错信息
+          //err.response可拿到服务器返回的报错数据
+          console.log(err)
+          this.$message.error('接口请求错误');
+        })
+    },
     start() {
       this.selectVisible = false
       this.tiredVisible = true
@@ -356,7 +442,7 @@ export default {
   background-color: #18BAAF
 }
 
-/deep/ .el-slider__bar{
+/deep/ .el-slider__bar {
   background-color: #18BAAF;
 }
 

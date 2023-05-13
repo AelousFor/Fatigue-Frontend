@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.46.3",
+    "axios": "^1.4.0",
     "echarts": "^5.2.2",
     "element-ui": "^2.15.13",
     "vue": "^2.5.2",
