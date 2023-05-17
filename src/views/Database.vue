@@ -6,38 +6,16 @@
       style="width: 100%"
       :cell-style="rowClass" :header-cell-style="headClass">
       <el-table-column
-        prop="userName">
-        <template #header>
-          <!-- 表头名称 -->
-          <span> 姓名 </span>
-          <!-- 自定义筛选组件 -->
-          <el-popover
-            placement="bottom"
-            width="300"
-            trigger="hover"
-            popper-class="filter-table-input"
-          >
-            <i slot="reference" class="el-icon-search table-filter-icon" />
-            <!-- content -->
-
-              <el-input v-model="searchKey" placeholder="请输入要查询的姓名" size="mini" class="filte-input" @keydown.native.enter="handleConfirm" />
-
-            <div style="display: flex;justify-content: flex-end;margin-top: 10px">
-                <el-button plain size="mini" @click="handleClear">
-                  重置
-                </el-button>
-
-                <el-button type="primary" size="mini" style="background-color: #18BAAF;border-color: #18BAAF" @click="handleConfirm">
-                  确认
-                </el-button>
-            </div>
-
-          </el-popover>
-        </template>
+        prop="userName"
+        label="姓名"
+        :filters="[{text: '宁毓轩', value: '宁毓轩'}, {text: '柳佳瑞', value: '柳佳瑞'}, {text: '何演', value: '何演'}]"
+        :filter-method="filterHandler">
       </el-table-column>
       <el-table-column
         prop="userGender"
-        label="性别">
+        label="性别"
+        :filters="[{text: '男', value: '男'}, {text: '女', value: '女'}]"
+        :filter-method="filterHandler">
       </el-table-column>
       <el-table-column
         prop="userAge"
@@ -98,15 +76,12 @@ export default {
   data() {
     return {
       tableData: [],
-      searchKey:'',
     }
   },
   methods: {
-    handleClear(){
-
-    },
-    handleConfirm(){
-
+    filterHandler(value, row, column) {
+      const property = column['property'];
+      return row[property] === value;
     },
     deleteData(index) {
       //get或者post , api为接口地址
@@ -137,8 +112,7 @@ export default {
       this.$axios({
         method: 'get',
         url: 'http://127.0.0.1:9876/user/get',
-        params: {
-        },
+        params: {},
         headers: {}, //如果需要添加请求头可在这写
       })
         .then((res) => {
@@ -202,6 +176,10 @@ export default {
 
 /deep/ .el-table--border::after, .el-table--group::after, .el-table::before {
   background-color: transparent;
+}
+
+/deep/ .el-table th.el-table__cell > .cell.highlight {
+  color: #18BAAF;
 }
 
 </style>
