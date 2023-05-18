@@ -182,4 +182,8 @@ export default {
   color: #18BAAF;
 }
 
+/deep/ .el-icon-arrow-down:before {
+  content: "\E6DF";
+  color: white;
+}
 </style>
