@@ -11,16 +11,15 @@
         </el-col>
         <el-col :span="12">
           <div class="right">
-            <WaveVideo></WaveVideo>
+            <HeadWave></HeadWave>
           </div>
         </el-col>
       </el-row>
     </div>
 
     <div class="under">
-        <FatigueDegree></FatigueDegree>
+      <FatigueDegree></FatigueDegree>
     </div>
-
 
   </div>
 
@@ -29,13 +28,12 @@
 <script>
 import DataTable from "../../components/DataTable";
 import FatigueDegree from "../../components/FatigueDegree";
-import WaveVideo from "../../components/WaveVideo";
-import FatigueVideo from "../../components/FatigueVideo";
+import HeadWave from "../../components/HeadWave";
 import FatigueWave from "../../components/FatigueWave";
 
 export default {
   name: "FatigueMonitor",
-  components: {FatigueDegree, DataTable, WaveVideo, FatigueVideo,FatigueWave},
+  components: {FatigueDegree, DataTable, FatigueWave, HeadWave},
   data() {
     return {}
   }

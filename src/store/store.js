@@ -6,7 +6,6 @@ Vue.use(Vuex)
 const store= new Vuex.Store({
   //state存放状态,
   state: {
-    fatigueWave: [0,0,0,0,0],
     fatigue: [Math.random().toFixed(2), Math.random().toFixed(2),
       Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2)],
     vvalue: [Math.random().toFixed(2), Math.random().toFixed(2),
@@ -64,9 +63,6 @@ const store= new Vuex.Store({
     getTable(state){
       return state.table
     },
-    getFatigueWave(state){
-      return state.fatigueWave
-    },
   },
   //mutations可更改状态的逻辑，同步操作
   mutations: {
@@ -74,7 +70,6 @@ const store= new Vuex.Store({
       state.fatigue = data.fatigue
       state.vvalue = data.vvalue
       state.table = data.table
-      state.fatigueWave=data.fatigueWave
     }
   },
   //提交mutation，异步操作

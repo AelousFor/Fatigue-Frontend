@@ -8,7 +8,6 @@
 
 <script>
 
-import Test from "./Test";
 import {mapGetters, mapState} from "vuex";
 import * as echarts from "echarts";
 
@@ -18,9 +17,6 @@ export default {
     return {
       chart: ''
     };
-  },
-  components:{
-    Test
   },
   computed: {
     ...mapState(['vvalue']),
