@@ -29,7 +29,7 @@
 
 <script>
 
-import Img from "../../assets/img1.jpg"
+import Img from "../../assets/img1.png"
 import DataTable from "../../components/DataTable";
 import VValue from "../../components/V-Value";
 

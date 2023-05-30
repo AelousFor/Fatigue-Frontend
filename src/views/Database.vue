@@ -87,7 +87,7 @@ export default {
       //get或者post , api为接口地址
       this.$axios({
         method: 'delete',
-        url: 'http://127.0.0.1:9876/user/delete',
+        url: '/user/delete',
         params: {
           autoKey: this.tableData[index].autoKey
         },
@@ -111,7 +111,7 @@ export default {
       //get或者post , api为接口地址
       this.$axios({
         method: 'get',
-        url: 'http://127.0.0.1:9876/user/get',
+        url: '/user/get',
         params: {},
         headers: {}, //如果需要添加请求头可在这写
       })
@@ -122,16 +122,17 @@ export default {
             let tableArr = []
             for (var i = 0; i < size; i++) {
               let tmp = data[i]
+              console.log(tmp)
               tableArr.push({
                 autoKey: tmp.autoKey,
                 userName: tmp.userName,
-                userGender: tmp.userName,
+                userGender: tmp.userGender,
                 userAge: tmp.userAge,
                 userOccupation: tmp.userOccupation,
                 userEducation: tmp.userEducation,
                 mathTime: tmp.mathTime * 5,
                 fatigueDegree: tmp.fatigueDegree,
-                vValue: tmp.vValue,
+                vValue: tmp.vvalue,
                 rightNumber: tmp.rightNumber,
                 wrongNumber: tmp.wrongNumber,
                 divValue: tmp.divValue

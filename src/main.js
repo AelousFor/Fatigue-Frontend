@@ -10,6 +10,10 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+
+//让请求携带上浏览器的cookie
+axios.defaults.withCredentials=true
+axios.defaults.baseURL = '/api'
 Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */

@@ -3,14 +3,15 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const store= new Vuex.Store({
+const store = new Vuex.Store({
   //state存放状态,
   state: {
+    signal: false,
     fatigue: [Math.random().toFixed(2), Math.random().toFixed(2),
       Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2)],
     vvalue: [Math.random().toFixed(2), Math.random().toFixed(2),
       Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2)],
-    table:  [{
+    table: [{
       th: 1,
       reactionTime: 0,
       totalCount: 0,
@@ -54,13 +55,16 @@ const store= new Vuex.Store({
   },
   //getter为state的计算属性
   getters: {
+    getSignal(state) {
+      return state.signal
+    },
     getFatigue(state) {
       return state.fatigue
     },
-    getVValue(state){
+    getVValue(state) {
       return state.vvalue
     },
-    getTable(state){
+    getTable(state) {
       return state.table
     },
   },
@@ -70,6 +74,9 @@ const store= new Vuex.Store({
       state.fatigue = data.fatigue
       state.vvalue = data.vvalue
       state.table = data.table
+    },
+    changeSignal(state, data) {
+      state.signal = data.signal
     }
   },
   //提交mutation，异步操作

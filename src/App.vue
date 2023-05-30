@@ -1,7 +1,6 @@
 <template>
 
   <div id="app">
-
     <el-container>
       <el-header style=" padding: 0 !important;">
         <el-menu
@@ -27,11 +26,18 @@
             </div>
 
           </el-menu-item>
-          <el-menu-item index="1" @click="toMonitor" v-if="mVisible">实时监测</el-menu-item>
-          <el-menu-item index="2" @click="toResult" v-if="rVisible">数据采集</el-menu-item>
+          <el-menu-item index="1" @click="toMonitor" v-if="visible">实时监测</el-menu-item>
+          <el-menu-item index="2" @click="toResult" v-if="visible">数据采集</el-menu-item>
+
           <el-menu-item index="3">
+            <el-button type="text" :icon=icon @click="getWaves" style="color: white" v-if="visible">{{ text }}
+            </el-button>
+          </el-menu-item>
+
+          <el-menu-item index="4">
             <Test></Test>
           </el-menu-item>
+
         </el-menu>
       </el-header>
 
@@ -60,7 +66,6 @@
                 <span slot="title">历史数据</span>
               </el-menu-item>
 
-
             </el-menu>
           </div>
 
@@ -69,7 +74,7 @@
 
         <el-main style="background-color: black">
           <div class="main">
-            <router-view></router-view>
+            <router-view ref="a"></router-view>
           </div>
         </el-main>
 
@@ -84,27 +89,55 @@
 <script>
 import Test from "./components/Test";
 import Logo from "./assets/gzhu.png"
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: 'App',
-  components: {Test},
+  components: {Test, },
   data() {
     return {
       LogoUrl: Logo,
       activeIndex: '1',
-      mVisible: true,
-      rVisible: true,
+      visible: true,
+      text: '载入数据',
+      icon: 'el-icon-upload',
+      dataSign: true
     };
   },
+  mounted() {
+  },
+  computed: {
+    ...mapState(['signal']),
+    ...mapMutations(['changeSignal'])
+  },
   methods: {
+    getWaves() {
+      if (this.dataSign) {
+          this.$store.commit('changeSignal', {signal:true})
+          this.text = '冻结数据'
+          this.icon = 'el-icon-camera-solid'
+          this.$message({
+            message: '载入成功',
+            type: 'success'
+          });
+          this.dataSign = false
+      } else {
+        this.$store.commit('changeSignal', {signal:false})
+          this.text = '载入数据'
+          this.icon = 'el-icon-upload'
+          this.$message({
+            message: '冻结成功',
+            type: 'success'
+          });
+          this.dataSign = true
+      }
+    },
     toDatabase() {
-      this.mVisible = false
-      this.rVisible = false
+      this.visible = false
       this.$router.push('/database');
     },
     toSingle() {
-      this.mVisible = true
-      this.rVisible = true
+      this.visible = true
       const hash = location.hash;
       const match = hash.match(/^#\/(\w+)\/(\w+)/);
       if (match) {
@@ -115,8 +148,7 @@ export default {
       }
     },
     toMulti() {
-      this.mVisible = true
-      this.rVisible = true
+      this.visible = true
       const hash = location.hash;
       const match = hash.match(/^#\/(\w+)\/(\w+)/);
       if (match) {

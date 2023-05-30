@@ -8,6 +8,7 @@
 
 <script>
 import * as echarts from "echarts";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   name: "HeadWave",
@@ -16,40 +17,45 @@ export default {
       chart: '',
       row: 0,
       data: [],
-      timer: null
+      timer: null,
+      start: false
     };
   },
-  mounted: function () {
+  mounted() {
+    this.drawLine()
     this.getData()
+    this.timer = setInterval(() => {
+      this.getNewRow()
+    }, 1250); // 延迟 1.25 秒后再执行请求
   },
   beforeDestroy() {
     if (this.timer) {
       clearInterval(this.timer);
     }
   },
-  created() {
+  computed: {
+    ...mapState(['signal']),
+    ...mapGetters(['getSignal'])
+  },
+  watch: {
+    signal: function () {
+      this.start = this.$store.getters.getSignal
+    }
   },
   methods: {
-
-    async getNewRow() {
-      if (this.row === this.data.length) {
-        this.row = 0
+    getNewRow() {
+      if (this.start) {
+        if (this.row === this.data.length) {
+          this.row = 0
+        }
+        this.drawLine()
+        this.row = this.row + 1
       }
-      this.drawLine()
-      this.row = this.row + 1
-
-      await new Promise((resolve) => {
-        this.timer = setTimeout(() => {
-          resolve();
-        }, 1250); // 延迟 1.25 秒后再执行请求
-      });
-      await this.getNewRow(); // 等待上次接口请求结束后再执行新的请求
     },
-
     getData() {
       this.$axios({
         method: 'get',
-        url: 'http://127.0.0.1:9876/file/get',
+        url: '/file/getWave',
         params: {},
       })
         .then((res) => {
@@ -60,11 +66,10 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-      this.getNewRow()
     },
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
-      if(this.chart == ''){
+      if (this.chart == '') {
         this.chart = echarts.init(document.getElementById('chart2'))
       }
       // 绘制图表
@@ -93,8 +98,9 @@ export default {
         },
         yAxis: {
           type: 'value',
-          max: 500,
-          min: -500,
+          max: 400,
+          min: -400,
+          interval: 100,
           axisLine: {
             lineStyle: {
               type: 'solid',
@@ -112,7 +118,14 @@ export default {
           orient: 'vertical',
           x: 'center',
           y: 'top',
-          data: ['脑电波'],
+          data: [
+            {
+              name: '脑电波',
+              textStyle: {
+                color: '#18BAAF', // 修改部分：将文字颜色设置为红色
+              },
+            },
+          ],
           lineStyle: {
             color: '#E6D177'
           }

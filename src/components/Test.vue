@@ -273,7 +273,7 @@ export default {
       //get或者post , api为接口地址
       this.$axios({
         method: 'post',
-        url: 'http://127.0.0.1:9876/user/insert',
+        url: '/user/insert',
         data: {
           userName: this.form.userName,
           userGender: this.form.userGender,
