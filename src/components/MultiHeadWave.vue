@@ -75,7 +75,7 @@ export default {
       // 绘制图表
       this.chart.setOption({
         title: {
-          text: '疲劳程度实时波形', // 主标题
+          text: '脑电波实时波形', // 主标题
           padding: [10, 50],
           x: 'left', // x轴方向对齐方式
           textStyle: {

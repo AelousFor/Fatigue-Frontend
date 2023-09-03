@@ -19,7 +19,7 @@
                 </el-col>
                 <el-col :span="10">
                   <div class="title">
-                    <span>疲劳测试实验</span>
+                    <span>疲劳程度检测系统</span>
                   </div>
                 </el-col>
               </el-row>

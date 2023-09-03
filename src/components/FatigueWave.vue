@@ -43,12 +43,21 @@ export default {
   methods: {
     getData() {
       if (this.start) {
-        // 每秒生成 200 个 0-3 之间的随机整数，并赋值给数组
+        // 每秒生成 20 个 0-3 之间的随机整数，并赋值给数组
         const array = new Array(20);
         for (let i = 0; i < 20; i++) {
-          array[i] = Math.floor(Math.random() * 4);
+          const randomNum = Math.random();
+          if (randomNum < 0.3) {
+            array[i] = 0;
+          } else if (randomNum < 0.65) {
+            array[i] = 1;
+          } else if (randomNum < 0.96) {
+            array[i] = 2;
+          } else {
+            array[i] = 3;
+          }
         }
-        this.data = array
+        this.data = array;
         this.drawLine()
       }
     }
@@ -96,7 +105,7 @@ export default {
           },
           splitLine: {
             lineStyle: {
-              color: '#139189'
+              color: ['#CC0000', '#139189','#139189'], // 分割线颜色数组
             }
           },
         },
